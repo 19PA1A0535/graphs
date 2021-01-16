@@ -1,0 +1,20 @@
+class Solution
+{
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+         ArrayList<Integer> x = new ArrayList<Integer>();
+        boolean v[] = new boolean[V];
+        dfs(0,adj,x,v);
+        return x;
+        
+    }
+    public void dfs(int index, ArrayList<ArrayList<Integer>> adj , ArrayList<Integer> x, boolean v[]){
+        v[index] = true;
+        x.add(index);
+        for(Integer neighbour : adj.get(index)){
+            if(!v[neighbour]){
+                    dfs(neighbour, adj, x,v);
+                }
+        }
+    }
+}
