@@ -1,0 +1,28 @@
+class Solution
+{
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+         ArrayList<Integer> x = new ArrayList<Integer>();
+        boolean v[] = new boolean[V];
+        bfs(0,adj,x,v);
+        return x;
+    }
+    public void bfs(int index ,ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> x, boolean v[]){
+        v[index] = true;
+        x.add(index);
+        for(Integer neighbour : adj.get(index)){
+            if(!v[neighbour]){
+                x.add(neighbour);
+                v[neighbour] = true;
+            }
+        }
+        for(int i=1;i<x.size();i++){
+            for(Integer neighbour : adj.get(x.get(i))){
+                if(!v[neighbour]){
+                    x.add(neighbour);
+                    v[neighbour] = true;
+                }
+            }
+        }
+    }
+}
